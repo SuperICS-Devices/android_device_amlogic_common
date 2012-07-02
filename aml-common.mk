@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-DEVICE_PACKAGE_OVERLAYS := device/amlogic/aml-common/overlay
+DEVICE_PACKAGE_OVERLAYS := device/amlogic/common/overlay
 
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
-	device/amlogic/aml-common/prebuilt/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+	device/amlogic/common/prebuilt/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -28,11 +28,11 @@ PRODUCT_PACKAGES += \
 
 # Key maps wpa and zram
 PRODUCT_COPY_FILES += \
-	device/amlogic/aml-common/prebuilt/wpa_supplicant:system/bin/wpa_supplicant \
-	device/amlogic/aml-common/prebuilt/zram:system/bin/zram \
-	device/amlogic/aml-common/prebuilt/adc_keypad.kl:system/usr/keylayout/adc_keypad.kl \
-	device/amlogic/aml-common/prebuilt/aml_keypad.kl:system/usr/keylayout/aml_keypad.kl \
-	device/amlogic/aml-common/prebuilt/jogball.kl:system/usr/keylayout/jogball.kl
+	device/amlogic/common/prebuilt/wpa_supplicant:system/bin/wpa_supplicant \
+	device/amlogic/common/prebuilt/zram:system/bin/zram \
+	device/amlogic/common/prebuilt/adc_keypad.kl:system/usr/keylayout/adc_keypad.kl \
+	device/amlogic/common/prebuilt/aml_keypad.kl:system/usr/keylayout/aml_keypad.kl \
+	device/amlogic/common/prebuilt/jogball.kl:system/usr/keylayout/jogball.kl
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -54,10 +54,10 @@ PRODUCT_COPY_FILES += \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 #etc files
-PRODUCT_COPY_FILES += $(shell find device/amlogic/aml-common/etc -name '*' -printf '%p:system/etc/%f ')
+PRODUCT_COPY_FILES += $(shell find device/amlogic/common/etc -name '*' -printf '%p:system/etc/%f ')
 
 #Power off Battery charge
-PRODUCT_COPY_FILES += $(shell find device/amlogic/aml-common/battery_pic -name '*' -printf '%p:system/resource/battery_pic/%f ')
+PRODUCT_COPY_FILES += $(shell find device/amlogic/common/battery_pic -name '*' -printf '%p:system/resource/battery_pic/%f ')
 
 # EXT4 Support
 PRODUCT_PACKAGES += make_ext4fs e2fsck
@@ -82,7 +82,7 @@ include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 #complete build.prop configuration
-$(call inherit-product, device/amlogic/aml-common/system.prop.mk)
+$(call inherit-product, device/amlogic/common/system.prop.mk)
 
 # Inherit propietary blobs
-$(call inherit-product-if-exists, vendor/amlogic/device-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/amlogic/common/device-vendor-blobs.mk)
